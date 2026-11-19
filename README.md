@@ -56,17 +56,22 @@ mkdir -p out && MAKEFUN_OUTPUT_DIR=out node main.ts
 
 This writes `out/entry.png`. The program reads no files and makes no network
 requests. It contains its own software rasterizer (framebuffer, rect/circle/line/
-polygon fills), an embedded 7×10 serif-style bitmap font designed for this entry
+polygon fills), an embedded 5x7 bitmap font designed for this entry
 (uppercase, lowercase, digits and punctuation, scaled for headlines and body text),
 a simplified world map drawn from embedded polygons, and a hand-written PNG
 encoder (zlib deflate at a fixed level, filter type 0 on every scanline), so the
 output is deterministic.
 
+Round 2 rebuild (November 2026): the program was rewritten from scratch
+following the same design brief, after the round 1 submission was rejected
+on its transcripts (the old bundle's run record did not carry the system
+prompt). The image keeps the same 43 stories and layout as round 1.
+
 ## Validation and limitations
 
-- Output: 1024×1024 PNG, 64,723 bytes (limit: 1 MiB).
+- Output: 1024×1024 PNG, 43,222 bytes (limit: 1 MiB).
 - Determinism: run twice, byte-identical.
-  sha256 of both runs: `2c9d5ad6dbd45e8f68907fe45b091a9c8d85464f1024452337ea120f657cae0f`
+  sha256 of both runs: `10c28a02cc73c1fa2df6242a77f08900dca642a43338b2e9969bc9aff3d493b0`
 - Legibility: the rendered image was viewed directly and revised several times.
   The masthead, all 13 headlines and all 13 decks are legible at full size; body
   text is small by design (it is a newspaper page) and reads cleanly at full size.
